@@ -1,6 +1,7 @@
 package com.aadi.ProductService.service.implementation;
 
 import com.aadi.ProductService.entity.Product;
+import com.aadi.ProductService.exception.ProductServiceCustomException;
 import com.aadi.ProductService.model.ProductRequest;
 import com.aadi.ProductService.model.ProductResponse;
 import com.aadi.ProductService.repository.ProductRepository;
@@ -41,14 +42,18 @@ public class ProductServiceImpl implements ProductService {
     log.info("GET the product for productId {}", productId);
     Product product = productRepository
       .findById(productId)
-      .orElseThrow(() -> new RuntimeException("pwoduct with given id not found")
+      .orElseThrow(() ->
+        new ProductServiceCustomException(
+          "pwoduct with given id not found",
+          "PRODUCT_NOT_FOUND"
+        )
       );
 
     log.debug("Fetched Product {}", product);
     ProductResponse productResponse = new ProductResponse();
     BeanUtils.copyProperties(product, productResponse);
 
-    log.debug("returning Product {}", productResponse);
+    log.debug("Returning Product {}", productResponse);
 
     return productResponse;
   }
