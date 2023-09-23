@@ -9,9 +9,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductRequest {
+public class ProductResponse {
 
-  private String name;
+  private long productId;
+  private String productName;
   private long price;
   private long quantity;
 }

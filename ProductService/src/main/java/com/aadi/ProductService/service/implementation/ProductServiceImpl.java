@@ -2,6 +2,7 @@ package com.aadi.ProductService.service.implementation;
 
 import com.aadi.ProductService.entity.Product;
 import com.aadi.ProductService.model.ProductRequest;
+import com.aadi.ProductService.model.ProductResponse;
 import com.aadi.ProductService.repository.ProductRepository;
 import com.aadi.ProductService.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -27,12 +28,28 @@ public class ProductServiceImpl implements ProductService {
       .price(productRequest.getPrice())
       .build();
 
-    // BeanUtils.copyProperties(productRequest, product);
     log.debug("Adding Product: " + product.toString());
 
     productRepository.save(product);
     log.info("Added Product");
 
     return product.getProductId();
+  }
+
+  @Override
+  public ProductResponse getProductById(long productId) {
+    log.info("GET the product for productId {}", productId);
+    Product product = productRepository
+      .findById(productId)
+      .orElseThrow(() -> new RuntimeException("pwoduct with given id not found")
+      );
+
+    log.debug("Fetched Product {}", product);
+    ProductResponse productResponse = new ProductResponse();
+    BeanUtils.copyProperties(product, productResponse);
+
+    log.debug("returning Product {}", productResponse);
+
+    return productResponse;
   }
 }
