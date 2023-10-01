@@ -13,7 +13,7 @@ spring:
 
 
 server:
-  port: 8082 # Change to the desired port for your Spring Boot application
+  port: 8085 # Change to the desired port for your Spring Boot application
 
 logging:
   level:
