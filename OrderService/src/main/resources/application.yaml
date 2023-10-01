@@ -9,12 +9,14 @@ spring:
     show-sql: true # Set to true to see SQL statements in logs
   application:
     name: ORDER-SERVICE
-
+  config:
+    import: configserver:http://localhost:9296
 
 
 server:
-  port: 8085 # Change to the desired port for your Spring Boot application
+  port: 8082 # Change to the desired port for your Spring Boot application
 
 logging:
   level:
     root: INFO # Adjust log levels as needed for your
+
