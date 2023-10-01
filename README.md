@@ -1,8 +1,8 @@
 # ShopaholicX
 
-## Run the Service Registry
+## Steps to Run the Project:
 
-## Run these commands before to setup the env
+### Run these commands before to setup the env
 
 docker run -d --name mysql_product_service -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 mysql:5.7.43
 
@@ -14,8 +14,18 @@ CREATE DATABASE productdb;
 
 CREATE DATABASE orderdb;
 
-USE productdb
+## Run each microservice in the following manner
 
-Run the application
+1. Run Service Registry
+2. Run Config Server
+3. Run Product Service
+4. Run Order Service
+
+
+## Extra commands to view data from backend
+
+USE productdb/orderdb;
 
 SHOW TABLES;
+
+SELECT * FROM <Table_name>;
