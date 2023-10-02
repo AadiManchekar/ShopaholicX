@@ -18,4 +18,4 @@ spring:
 
 logging:
   level:
-    root: INFO # you can set it to DEBUG
+    root: DEBUG # you can set it to DEBUG

@@ -1,5 +1,6 @@
 package com.aadi.OrderService.service.implementation;
 
+import com.aadi.OrderService.external.client.ProductService;
 import com.aadi.OrderService.model.Order;
 import com.aadi.OrderService.model.OrderRequest;
 import com.aadi.OrderService.repository.OrderRepository;
@@ -16,12 +17,22 @@ public class OrderServiceImpl implements OrderService {
 
   private final OrderRepository orderRepository;
 
+  private final ProductService productService;
+
   @Override
   public long placeOrder(OrderRequest orderRequest) {
     log.info(
       "Recieved orderRequest for product id {}",
       orderRequest.getProductId()
     );
+
+    productService.reduceQuantity(
+      orderRequest.getProductId(),
+      orderRequest.getQuantity()
+    );
+
+    log.info("Creating Order with Status CREATED");
+
     Order order = Order
       .builder()
       .productId(orderRequest.getProductId())

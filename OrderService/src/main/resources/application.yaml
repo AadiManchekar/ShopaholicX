@@ -18,5 +18,5 @@ server:
 
 logging:
   level:
-    root: INFO # Adjust log levels as needed for your
+    root: DEBUG # Adjust log levels as needed for your
 
